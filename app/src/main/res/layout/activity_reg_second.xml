@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgraund_back"
+    tools:context=".RegSecondActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/img_background"
+        android:background="@drawable/black_line">
+
+        <RelativeLayout
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:id="@+id/profesRelatRegSec">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/profession"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/white"
+                    android:padding="10dp"
+                    android:textStyle="bold"
+                    android:background="@drawable/edittext_border_radius"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Profession"
+                    android:layout_marginStart="25dp"
+                    android:layout_alignParentStart="true"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:background="#191919"
+                    android:textColor="@color/white" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profesRelatRegSec"
+                android:layout_marginTop="30dp"
+                android:id="@+id/salaryRelatRegSec">
+
+                <EditText
+                    android:layout_width="210dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/salary"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/white"
+                    android:padding="10dp"
+                    android:textStyle="bold"
+                    android:background="@drawable/edittext_border_radius"/>
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/valut"
+                    android:text="$"
+                    android:textSize="25sp"
+                    android:layout_marginStart="30dp"
+                    android:layout_toEndOf="@+id/salary"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/white"
+                    android:paddingTop="7dp"
+                    android:paddingLeft="25dp"
+                    android:textStyle="bold"
+                    android:background="@drawable/edittext_border_radius"/>
+
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/ic_down"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Salary"
+                    android:layout_marginStart="25dp"
+                    android:layout_alignParentStart="true"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:background="#191919"
+                    android:textColor="@color/white" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/salaryRelatRegSec"
+                android:layout_marginTop="30dp"
+                android:id="@+id/worDeyRelatRegSec">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/workDay"
+                    android:layout_marginTop="10dp"
+                    android:password="true"
+                    android:textColor="@color/white"
+                    android:padding="10dp"
+                    android:textStyle="bold"
+                    android:background="@drawable/edittext_border_radius"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Working days"
+                    android:layout_marginStart="25dp"
+                    android:layout_alignParentStart="true"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:background="#191919"
+                    android:textColor="@color/white" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnUPRegSec"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="70dp"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_below="@+id/worDeyRelatRegSec"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:text="SING UP"
+                android:background="@drawable/backgraund_btn"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

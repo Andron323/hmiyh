@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgraund_back"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/img_background"
+        android:background="@drawable/black_line">
+
+        <RelativeLayout
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:id="@+id/emailRelat">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/email"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/white"
+                    android:padding="10dp"
+                    android:textStyle="bold"
+                    android:background="@drawable/edittext_border_radius"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="E-mail"
+                    android:layout_marginStart="25dp"
+                    android:layout_alignParentStart="true"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:background="#191919"
+                    android:textColor="@color/white" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/emailRelat"
+                android:layout_marginTop="30dp"
+                android:id="@+id/passRelat">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/pass"
+                    android:layout_marginTop="10dp"
+                    android:password="true"
+                    android:textColor="@color/white"
+                    android:padding="10dp"
+                    android:textStyle="bold"
+                    android:background="@drawable/edittext_border_radius"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Password"
+                    android:layout_marginStart="25dp"
+                    android:layout_alignParentStart="true"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:background="#191919"
+                    android:textColor="@color/white" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/forgotPass"
+                android:textColor="@color/white"
+                android:text="Forgot Password?"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:layout_below="@+id/passRelat"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnIN"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="70dp"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_below="@+id/forgotPass"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:text="LOGIN"
+                android:background="@drawable/backgraund_btn"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnUP"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="25dp"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_below="@+id/btnIN"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:text="SING UP" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
