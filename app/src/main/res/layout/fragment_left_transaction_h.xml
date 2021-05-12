@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.LeftTransactionHFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/headBlock"
+        >
+<!--        android:background="@drawable/backgraund_fragment"-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/trhi"
+            android:layout_centerHorizontal="true"
+            android:text="Transactions historyTimer"
+            android:textSize="20sp"
+            android:layout_marginBottom="19dp"
+            android:textColor="@color/blue"/>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/listHead"
+            android:dividerHeight="0dp"
+            android:divider="@android:color/transparent"
+            android:layout_below="@+id/trhi"/>
+
+    </RelativeLayout>
+
+</FrameLayout>

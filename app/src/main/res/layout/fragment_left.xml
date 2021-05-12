@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#191919"
+    android:padding="1dp"
+    tools:context=".fragments.LeftFragment">
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gifImageView"
+        android:layout_height="260dp"
+        android:layout_width="match_parent"
+        android:src="@drawable/gif1"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/fragment_container"
+        android:layout_above="@+id/chip_bar"
+        android:layout_marginTop="290dp"/>
+
+    <com.ismaeldivita.chipnavigation.ChipNavigationBar
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/chip_bar"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        app:cnb_unselectedColor="@color/white"
+        android:background="#191919"
+        app:cnb_menuResource="@menu/bottom_menu" />
+
+
+</RelativeLayout>

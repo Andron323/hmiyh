@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:elevation="3dp"
+    android:background="@drawable/backgraund_fragment_timer"
+    tools:context=".fragments.TimerFragment">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+
+        <Chronometer
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/timer22"
+            android:paddingTop="40dp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textStyle="normal"
+            android:format="%s"
+            android:textSize="70sp"/>
+
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/timer22"-->
+<!--            android:text="00:00:00"-->
+<!--            android:paddingTop="40dp"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:gravity="center"-->
+<!--            android:textStyle="normal"-->
+<!--            android:textSize="70sp"/>-->
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn"
+            android:layout_below="@+id/timer22"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_start"
+                android:text="START"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:textColor="@color/blue"
+                android:background="@drawable/backgraund_btn_timer"/>
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:id="@+id/btn_stop"-->
+<!--                android:layout_toEndOf="@+id/btn_start"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:text="STOP"-->
+<!--                android:textSize="30dp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:paddingLeft="10dp"-->
+<!--                android:paddingRight="10dp"-->
+<!--                android:background="@drawable/backgraund_btn_timer_stop"/>-->
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/money"
+                android:text="0.0 $"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="35dp"
+                android:paddingBottom="10dp"/>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

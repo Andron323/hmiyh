@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#191919"
+    android:padding="1dp"
+    tools:context=".HomeActivity">
+
+    <RelativeLayout
+        android:id="@+id/spedometrRel"
+        android:layout_width="wrap_content"
+        android:layout_height="280dp"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/hour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="$/hour"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <pl.pawelkleczkowski.customgauge.CustomGauge
+            android:id="@+id/headProgressBAQR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/hour"
+            android:layout_centerHorizontal="true"
+            app:gaugeEndValue="800"
+            app:gaugePointEndColor="#116498"
+            app:gaugePointSize="77"
+            app:gaugePointStartColor="#ffffff"
+            app:gaugeStartAngle="135"
+            app:gaugeStartValue="200"
+            app:gaugeStrokeCap="ROUND"
+            app:gaugeStrokeColor="#bdbdbd"
+            app:gaugeStrokeWidth="20dp"
+            app:gaugeSweepAngle="270" />
+
+        <TextView
+            android:id="@+id/headerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="77$"
+            android:textColor="#bdbdbd"
+            android:textSize="50sp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:id="@+id/speedRel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="35dp">
+
+            <TextView
+                android:id="@+id/startSpeed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/white"
+
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/endSpeed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="260dp"
+                android:text="270"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/bottomFragCont"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/spedometrRel"
+        android:layout_marginBottom="40dp">
+        <!--        android:background="@drawable/backgraund_fragment"-->
+
+        <ListView
+            android:id="@+id/list_graphix"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/timerRel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+
+
+        <ImageView
+            android:id="@+id/imgUp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerHorizontal="true"
+            android:elevation="35dp"
+            android:background="@drawable/backgraund_up_down"
+            android:src="@drawable/ic_to_up2"
+            android:layout_marginBottom="2dp"/>
+        <!--            android:background="@drawable/backgraund_up_down"-->
+
+        <!--            <TextView-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:id="@+id/textTimer"-->
+        <!--                android:text="TIMER"-->
+        <!--                android:textSize="23sp"-->
+        <!--                android:layout_below="@+id/imgUp"-->
+        <!--                android:layout_centerHorizontal="true"-->
+        <!--                android:textColor="@color/white"-->
+        <!--                />-->
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/show_video"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+
+        <RelativeLayout
+            android:id="@+id/camera_view_rel"
+            android:layout_width="wrap_content"
+            android:layout_marginRight="19dp"
+            android:layout_marginLeft="19dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <FrameLayout
+                android:id="@+id/fragment_timer"
+                android:layout_width="match_parent"
+                android:layout_height="260dp" />
+
+            <ImageView
+                android:id="@+id/imgDown"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/backgraund_up_down"
+                android:src="@drawable/ic_to_down_strelka2" />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

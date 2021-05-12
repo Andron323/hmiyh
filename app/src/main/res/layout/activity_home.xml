@@ -5,227 +5,227 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#191919"
+    android:id="@+id/headRelLayHome"
     tools:context=".HomeActivity">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="280dp"
-        android:layout_marginTop="40dp"
-        android:id="@+id/spedometrRel">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/hour"
-            android:text="$/hour"
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            android:layout_centerHorizontal="true"/>
-
-        <pl.pawelkleczkowski.customgauge.CustomGauge
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/headProgressBAQR"
-            android:layout_below="@+id/hour"
-            android:layout_centerHorizontal="true"
-            app:gaugePointEndColor="#116498"
-            app:gaugePointStartColor="#ffffff"
-            app:gaugeStartValue="200"
-            app:gaugeEndValue="800"
-            app:gaugePointSize="150"
-            app:gaugeStrokeCap="ROUND"
-            app:gaugeStrokeColor="#bdbdbd"
-            app:gaugeStrokeWidth="20dp"
-            app:gaugeStartAngle="135"
-            app:gaugeSweepAngle="270" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/headerText"
-            android:text="150"
-            android:textStyle="bold"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:textSize="50sp"
-            android:textColor="#bdbdbd"/>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/speedRel"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="35dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/startSpeed"
-                android:text="0"
-                android:textColor="@color/white"
-
-                android:textSize="20sp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/endSpeed"
-                android:text="270"
-                android:layout_marginStart="260dp"
-                android:textColor="@color/white"
-                android:textSize="20sp"/>
-
-        </RelativeLayout>
-
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/navigImgRel"
-        android:orientation="horizontal"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/spedometrRel">
-
-        <ImageView
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:src="@drawable/ic_dot_of"/>
-        <ImageView
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:src="@drawable/ic_dot"/>
-        <ImageView
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:src="@drawable/ic_dot_of"/>
-
-    </LinearLayout>
+    <androidx.viewpager.widget.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/view_pager_head"
+        android:layout_alignParentStart="true" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/bottomFragCont"
-        android:background="@drawable/backgraund_fragment"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/navigImgRel">
+        android:id="@+id/Rlay">
+
+        <com.google.android.material.tabs.TabLayout
+            android:layout_width="100dp"
+            android:layout_height="13dp"
+            android:id="@+id/tab_layout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="270dp"
+            app:tabTextColor="@color/black"
+            app:tabIndicatorHeight="13dp"
+            android:backgroundTint="#00ffffff"
+            app:tabMaxWidth="13dp"
+            app:tabIndicator="@drawable/ic_dot"
+            app:tabIndicatorColor="@color/white"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/dots"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal"
+            android:layout_marginTop="270dp">
+
+            <ImageView
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:id="@+id/off_img_1"
+                android:paddingRight="1dp"
+                android:src="@drawable/ic_dot_of"/>
+            <ImageView
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:id="@+id/off_img_0"
+                android:paddingRight="1dp"
+                android:src="@drawable/ic_dot_of"/>
+            <ImageView
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:id="@+id/off_img_2"
+                android:paddingLeft="1dp"
+                android:src="@drawable/ic_dot_of"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="19dp"
+        android:background="@drawable/backgraund_fragment_timer"
+        android:padding="20dp"
+        android:visibility="gone"
+        android:id="@+id/regWindow">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textOfProgBar"
-            android:text="goal $/month"
-            android:textSize="20sp"
-            android:layout_marginTop="20dp"
+            android:id="@+id/helloTextLable"
+            android:layout_centerHorizontal="true"
+            android:text="Hi, friend!"
+            android:textColor="@color/white"
             android:layout_marginBottom="20dp"
-            android:layout_centerHorizontal="true"
-            android:textColor="@color/white"
-            />
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/progressRel"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/textOfProgBar">
-
-            <ProgressBar
-                android:layout_width="350dp"
-                android:layout_height="25dp"
-                android:id="@+id/progress"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:progressDrawable="@drawable/linear_progress"
-                android:progress="50"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/onProgSpeed"
-                android:text="900"
-                android:textStyle="normal"
-                android:textSize="20sp"
-                android:layout_centerHorizontal="true"
-                android:textColor="@color/white"
-                />
-
-        </RelativeLayout>
+            android:textSize="25dp"
+            android:textStyle="bold"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textGraf"
-            android:text="work intensity"
-            android:layout_below="@+id/progressRel"
-            android:layout_marginTop="30dp"
-            android:textStyle="normal"
-            android:textSize="20sp"
+            android:id="@+id/helloText"
+            android:layout_below="@+id/helloTextLable"
             android:layout_centerHorizontal="true"
+            android:text="If you wont to use this app, you need to Sing in\nwith your Google account."
             android:textColor="@color/white"
-            />
-
-        <RelativeLayout
-            android:layout_width="350dp"
-            android:layout_height="180dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/textGraf"
-            android:id="@+id/grafRel"
-            android:layout_marginTop="10dp">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/imgGraf"
-                android:src="@drawable/grafline"
-                android:paddingBottom="15dp"/>
-
-<!--            <com.jjoe64.graphview.GraphView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="200dip"-->
-<!--                android:id="@+id/graph"-->
-
-<!--                app:seriesColor="#ee0000" />-->
-            <ir.farshid_roohi.linegraph.LineChart
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/lineChart"
-                android:orientation="horizontal"
-                app:chart_padding_bottom="40dp"
-                app:chart_padding_left="20dp"
-                app:chart_padding_right="20dp"
-                app:chart_padding_top="25dp"
-                app:chart_line_color="#00000000"
-                app:chart_bg_color="#00000000"
-                />
-
-        </RelativeLayout>
-
-        <RelativeLayout
+            android:textSize="15dp"
+            android:textStyle="normal"/>
+        <TextView
+            android:id="@+id/politika"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/timerRel"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/helloText"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="15dp">
+            android:text="Read Police"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/blue"
+            android:textSize="15dp"
+            android:textStyle="normal" />
 
-            <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:id="@+id/imgUp"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/backgraund_up_down"
-                android:src="@drawable/ic_to_up"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textTimer"
-                android:text="TIMER"
-                android:textSize="23sp"
-                android:layout_below="@+id/imgUp"
-                android:layout_centerHorizontal="true"
-                android:textColor="@color/white"
-                />
-        </RelativeLayout>
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/sign_in_button"
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/politika"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content" />
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/out_button"
+            android:layout_width="wrap_content"
+            android:layout_toRightOf="@+id/sign_in_button"
+            android:layout_marginLeft="30dp"
+            android:visibility="gone"
+            android:layout_height="wrap_content" />
 
     </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/backgraund_fragment_timer"
+        android:padding="10dp"
+        android:visibility="gone"
+        android:layout_margin="19dp"
+        android:id="@+id/settingsWindow">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/setWork"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:backgroundTint="@color/white"
+            android:hint="Enter work name"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/setInformation"
+            android:layout_below="@+id/setWork"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
+            android:textColorHint="@color/white"
+            android:backgroundTint="@color/white"
+            android:hint="Enter hobbies"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/setWorkDay"
+            android:layout_below="@+id/setInformation"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
+            android:textColorHint="@color/white"
+            android:backgroundTint="@color/white"
+            android:hint="Number of working days in month"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/setWorkTime"
+            android:layout_below="@+id/setWorkDay"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
+            android:textColorHint="@color/white"
+            android:backgroundTint="@color/white"
+            android:hint="Number of working hour in days"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/setDohod"
+            android:layout_below="@+id/setWorkTime"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
+            android:textColorHint="@color/white"
+            android:backgroundTint="@color/white"
+            android:hint="Enter the month salary in dollars"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_save"
+            android:layout_below="@+id/setDohod"
+            android:text="SAVE"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:textColor="@color/blue"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/backgraund_btn_timer"/>
+
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/helloText"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:text="If you wont to use this app,\n-->
+<!--            you need to Sing in\nwith your Google account."-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="15dp"-->
+<!--            android:textStyle="normal"/>-->
+
+
+
+    </RelativeLayout>
+
+
+
+
+<!--    <androidx.viewpager.widget.ViewPager-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:id="@+id/view_pager_bottom"-->
+<!--        android:layout_below="@+id/tab_layout"/>-->
 
 
 </RelativeLayout>

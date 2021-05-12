@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#191919"
+    android:padding="1dp"
+    tools:context=".fragments.RightFragment">
+
+    <LinearLayout
+        android:id="@+id/bigBlock"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#191919"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="15dp"
+            android:padding="3dp">
+
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_out"
+                android:layout_alignParentRight="true"
+                android:text="Log out"
+                android:textSize="8sp"
+                android:padding="0dp"
+                android:layout_marginRight="15dp"
+                android:backgroundTint="@color/blue"/>
+
+            <RelativeLayout
+                android:id="@+id/userAvatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/avatar_user"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:src="@drawable/avatar"
+                    app:civ_border_color="@color/blue"
+                    app:civ_border_width="2dp" />
+
+                <TextView
+                    android:id="@+id/nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="19dp"
+                    android:layout_marginBottom="19dp"
+                    android:layout_toRightOf="@+id/avatar_user"
+                    android:text="Andron323"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/position"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="19dp"
+                    android:layout_marginBottom="19dp"
+                    android:layout_toRightOf="@+id/nickname"
+                    android:text="№5"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/userCard"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/userAvatar"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="12dp">
+
+                <LinearLayout
+                    android:id="@+id/nickLayaut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nickname"
+                        android:textColor="@color/white"
+                        android:textSize="20dp"
+                        android:textStyle="normal" />
+
+                    <TextView
+                        android:id="@+id/data"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_below="@+id/name"
+                        android:layout_marginBottom="3dp"
+                        android:text="Andron323"
+                        android:textColor="@color/blue"
+                        android:textSize="15dp"
+                        android:textStyle="normal" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/nickLayaut2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@+id/nickLayaut3"
+                    android:layout_toEndOf="@+id/nickLayaut"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/name2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Work Name"
+                        android:textColor="@color/white"
+                        android:textSize="20dp"
+                        android:textStyle="normal" />
+
+                    <TextView
+                        android:id="@+id/data2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/name"
+                        android:layout_marginBottom="3dp"
+                        android:gravity="center"
+                        android:text="Developer JAVA"
+                        android:textColor="@color/blue"
+                        android:textSize="15dp"
+                        android:textStyle="normal" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/nickLayaut3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/name3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Information"
+                        android:textColor="@color/white"
+                        android:textSize="20dp"
+                        android:textStyle="normal" />
+
+                    <TextView
+                        android:id="@+id/data3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/name"
+                        android:layout_marginBottom="3dp"
+                        android:text="Stady in university"
+                        android:textColor="@color/blue"
+                        android:textSize="15dp"
+                        android:textStyle="normal" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="20dp">
+
+                    <RelativeLayout
+                        android:id="@+id/filter_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp">
+<!--                        android:background="@drawable/border"-->
+
+<!--                        <ImageView-->
+<!--                            android:id="@+id/img_filter"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:src="@drawable/ic_filter" />-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/filter"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_toEndOf="@+id/img_filter"-->
+<!--                            android:text="Filter by work"-->
+<!--                            android:textColor="@color/white"-->
+<!--                            android:textSize="15dp"-->
+<!--                            android:paddingRight="4dp"-->
+<!--                            android:textStyle="normal" />-->
+                        <Spinner
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/spinner"
+                            android:background="@drawable/style_spinner"
+                            android:isScrollContainer="true"
+                            />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/filter_layout2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_toEndOf="@+id/filter_layout"
+                        android:padding="2dp">
+
+<!--                        <ImageView-->
+<!--                            android:id="@+id/img_filter2"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:src="@drawable/ic_filter" />-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/filter2"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_toRightOf="@+id/img_filter2"-->
+<!--                            android:text="Sort by ..."-->
+<!--                            android:textColor="@color/white"-->
+<!--                            android:textSize="15dp"-->
+<!--                            android:paddingRight="3dp"-->
+<!--                            android:textStyle="normal" />-->
+
+                        <Spinner
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/spinner2"
+                            android:background="@drawable/style_spinner"
+                            android:isScrollContainer="true"
+                            />
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+        <ListView
+            android:id="@+id/listReiting"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

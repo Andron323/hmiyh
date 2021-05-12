@@ -9,7 +9,7 @@
 
     <gradient
         android:angle="45"
-        android:endColor="#116498"
+        android:endColor="#3399ff"
         android:startColor="#bdbdbd" />
 
     <!--create invisible stroke for padding-->
