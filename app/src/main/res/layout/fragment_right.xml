@@ -56,7 +56,7 @@
                     android:layout_marginLeft="19dp"
                     android:layout_marginBottom="19dp"
                     android:layout_toRightOf="@+id/avatar_user"
-                    android:text="Andron323"
+                    android:text="Loading..."
                     android:textColor="@color/white"
                     android:textSize="20sp" />
 
@@ -68,7 +68,7 @@
                     android:layout_marginLeft="19dp"
                     android:layout_marginBottom="19dp"
                     android:layout_toRightOf="@+id/nickname"
-                    android:text="№5"
+                    android:text="№..."
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -108,7 +108,7 @@
 
                         android:layout_below="@+id/name"
                         android:layout_marginBottom="3dp"
-                        android:text="Andron323"
+                        android:text="Loading..."
                         android:textColor="@color/blue"
                         android:textSize="15dp"
                         android:textStyle="normal" />
@@ -141,7 +141,7 @@
                         android:layout_below="@+id/name"
                         android:layout_marginBottom="3dp"
                         android:gravity="center"
-                        android:text="Developer JAVA"
+                        android:text="Loading..."
                         android:textColor="@color/blue"
                         android:textSize="15dp"
                         android:textStyle="normal" />
@@ -171,7 +171,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/name"
                         android:layout_marginBottom="3dp"
-                        android:text="Stady in university"
+                        android:text="Loading..."
                         android:textColor="@color/blue"
                         android:textSize="15dp"
                         android:textStyle="normal" />
@@ -179,38 +179,24 @@
                 </LinearLayout>
 
                 <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/nickLayaut"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="20dp">
+                    android:layout_marginBottom="5dp">
 
                     <RelativeLayout
                         android:id="@+id/filter_layout"
                         android:layout_width="wrap_content"
+                        android:layout_centerVertical="true"
                         android:layout_height="wrap_content"
                         android:padding="2dp">
-<!--                        android:background="@drawable/border"-->
 
-<!--                        <ImageView-->
-<!--                            android:id="@+id/img_filter"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:src="@drawable/ic_filter" />-->
-
-<!--                        <TextView-->
-<!--                            android:id="@+id/filter"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_toEndOf="@+id/img_filter"-->
-<!--                            android:text="Filter by work"-->
-<!--                            android:textColor="@color/white"-->
-<!--                            android:textSize="15dp"-->
-<!--                            android:paddingRight="4dp"-->
-<!--                            android:textStyle="normal" />-->
                         <Spinner
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="170dp"
+                            android:layout_height="40dp"
+                            android:paddingRight="0dp"
+                            android:gravity="center"
                             android:id="@+id/spinner"
                             android:background="@drawable/style_spinner"
                             android:isScrollContainer="true"
@@ -220,31 +206,16 @@
                     <RelativeLayout
                         android:id="@+id/filter_layout2"
                         android:layout_width="wrap_content"
+                        android:layout_centerVertical="true"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_toEndOf="@+id/filter_layout"
+                        android:layout_alignParentRight="true"
                         android:padding="2dp">
 
-<!--                        <ImageView-->
-<!--                            android:id="@+id/img_filter2"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:src="@drawable/ic_filter" />-->
-
-<!--                        <TextView-->
-<!--                            android:id="@+id/filter2"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_toRightOf="@+id/img_filter2"-->
-<!--                            android:text="Sort by ..."-->
-<!--                            android:textColor="@color/white"-->
-<!--                            android:textSize="15dp"-->
-<!--                            android:paddingRight="3dp"-->
-<!--                            android:textStyle="normal" />-->
-
                         <Spinner
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="170dp"
+                            android:layout_height="40dp"
+                            android:paddingRight="0dp"
+                            android:gravity="center"
                             android:id="@+id/spinner2"
                             android:background="@drawable/style_spinner"
                             android:isScrollContainer="true"

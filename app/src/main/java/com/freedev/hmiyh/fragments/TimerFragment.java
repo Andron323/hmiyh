@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.os.SystemClock;
@@ -15,11 +17,16 @@ import android.view.ViewGroup;
 import android.widget.Chronometer;
 import android.widget.TextView;
 
-import com.freedev.hmiyh.HistoryTimer;
+import com.freedev.hmiyh.datas.HistoryTimer;
 import com.freedev.hmiyh.HomeActivity;
 import com.freedev.hmiyh.R;
+import com.freedev.hmiyh.datas.User;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import java.util.Objects;
 
@@ -48,7 +55,8 @@ public class TimerFragment extends Fragment {
     private int sec = 0;
     private double resMany = 0.0;
     private FirebaseDatabase database;
-    private DatabaseReference myRef;
+    private DatabaseReference myRef, myRefUser;
+    private double personHourCost;
 
     public TimerFragment() {
         // Required empty public constructor
@@ -88,6 +96,39 @@ public class TimerFragment extends Fragment {
 
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("HistoryTimer");
+        myRefUser = database.getReference("User");
+
+
+        SharedPreferences mSettings = getContext().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+        String id = mSettings.getString(APP_PREFERENCES_NAME, "UNIK_ID");
+        Log.d("%%%%%%%%%%%%%",id);
+        Query myQuery = myRefUser.orderByChild("personId").equalTo(id);
+        myQuery.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                try {
+                    User user = snapshot.getValue(User.class);
+
+                    personHourCost = Double.parseDouble(user.personHourCost);
+                    Log.d("&&&&&&&&&&&&&&&&&&&&",user.personPhoto);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+            }
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+            }
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
 
         mChronometer = v.findViewById(R.id.timer22);
 
@@ -104,14 +145,13 @@ public class TimerFragment extends Fragment {
                 int hours = (int) ((base / (1000 * 60 * 60)) % 24);
 
 //                TODO
-                int navStoit = 8;
 
-                resMany = (double) navStoit * seconds / 3600;
-                resMany = (double) navStoit * minutes / 60;
-                resMany = resMany + navStoit * hours;
+                resMany = (double) personHourCost * (double) seconds / (double) 3600;
+                resMany = (double) personHourCost * (double) minutes / (double) 60;
+                resMany = resMany + personHourCost * (double) hours;
 
                 Log.d("@@@@@@@@@@@@@@@@@@@@", String.valueOf(seconds) + " " + resMany);
-                money.setText(String.valueOf(String.format("%8.2f", resMany)) + " $");
+                money.setText(String.valueOf(String.format("%.2f", resMany)) + " $");
 
             }
         });
@@ -135,7 +175,7 @@ public class TimerFragment extends Fragment {
                     String id = mSettings.getString(APP_PREFERENCES_NAME, "UNIK_ID");
 
 
-                    HistoryTimer historyTimer = new HistoryTimer(id,hours + "h " + minutes + "m " + seconds+"s" , String.valueOf(String.format("%8.2f", resMany)), ((HomeActivity) Objects.requireNonNull(getActivity())).nowData());
+                    HistoryTimer historyTimer = new HistoryTimer(id,hours + "h " + minutes + "m " + seconds+"s" , String.valueOf(resMany), ((HomeActivity) Objects.requireNonNull(getActivity())).nowData());
                     myRef.push().setValue(historyTimer);
                 } else {
                     btn_start.setText("Stop");

@@ -4,7 +4,7 @@
     <item
         android:id="@+id/time_h"
         android:icon="@drawable/ic_to_down"
-        android:title="Timer historyTimer"
+        android:title="Timer history"
         app:cnb_backgroundColor="@color/white"
         app:cnb_iconColor="@color/blue"
         app:cnb_iconTintMode="src_in"
@@ -13,7 +13,7 @@
         android:id="@+id/transak_h"
         android:icon="@drawable/ic_mony"
         android:iconTint="@color/white"
-        android:title="Transaction historyTimer"
+        android:title="Transaction history"
         app:cnb_backgroundColor="@color/white"
         app:cnb_iconColor="@color/blue"
         app:cnb_iconTintMode="src_in"

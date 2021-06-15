@@ -10,11 +10,13 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.freedev.hmiyh.Graphix;
+import com.freedev.hmiyh.HomeActivity;
+import com.freedev.hmiyh.datas.Graphix;
 import com.freedev.hmiyh.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 import ir.farshid_roohi.linegraph.ChartEntity;
 import ir.farshid_roohi.linegraph.LineChart;
@@ -23,6 +25,10 @@ public class AdapterGraphix extends ArrayAdapter<Graphix> {
     public AdapterGraphix(Context context, ArrayList<Graphix> graphixes) {
         super(context, 0, graphixes);
     }
+
+    private float[] grapx1 = new float[7];
+    private float[] grapx2 = new float[7];
+    private String[] grapxName = new String[7];
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -44,28 +50,39 @@ public class AdapterGraphix extends ArrayAdapter<Graphix> {
         //graphix
         LineChart lineChart = (LineChart) convertView.findViewById(R.id.lineChart);
         ArrayList list = new ArrayList<ChartEntity>();
-        if (graphix.graphic1!=null){
-            ChartEntity firstChartEntity = new ChartEntity(Color.CYAN, graphix.graphic1);//invisible
+        if (graphix.list!=null){
+            for (int i = 0; i<graphix.list.size();i++){
+                grapx1[i] = Float.parseFloat(graphix.list.get(i));
+            }
+
+            ChartEntity firstChartEntity = new ChartEntity(Color.WHITE,grapx1);//invisible
             list.add(firstChartEntity);
         }
-        if (graphix.graphic2!=null){
-            ChartEntity secondChartEntity = new ChartEntity(Color.WHITE, graphix.graphic2);
+        if (graphix.list2!=null){
+            for (int i = 0; i<graphix.list2.size();i++){
+                grapx2[i] = Float.parseFloat(graphix.list2.get(i));
+            }
+            ChartEntity secondChartEntity = new ChartEntity(Color.CYAN, grapx2);
             list.add(secondChartEntity);
         }
+
+//        grapxName[0];
+//        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"+HomeActivity.nowData());
 
 
         if (graphix.name_progress.equals(""))progress_layout.setVisibility(View.GONE);
         if (graphix.name_graphic.equals(""))graphix_layout.setVisibility(View.GONE);
 
-        // Populate the data into the template view using the data object
         textOfProgBar.setText(graphix.name_progress);
-        onProgSpeed.setText(graphix.onProgSpeed);
-        progress.setMax(100);
-        progress.setProgress(graphix.progress);
+        onProgSpeed.setText(graphix.titelOnProgresBar);
+        progress.setMax(Integer.parseInt(graphix.targetMonthCost));
+        progress.setProgress(Integer.parseInt(graphix.progress));
+
         textGraf.setText(graphix.name_graphic);
         lineChart.setList(list);
-        lineChart.setLegend(Arrays.asList(graphix.name_x_graphic));
+        lineChart.setLegend(Arrays.asList(legendArr));
         // Return the completed view to render on screen
         return convertView;
     }
+    private String[] legendArr = {"05/18", "05/19", "05/20", "05/21", "05/22", "05/23", "05/24", "05/25", "05/26", "05/27", "05/28"};
 }

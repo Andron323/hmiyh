@@ -2,230 +2,255 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/headRelLayHome"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#191919"
-    android:id="@+id/headRelLayHome"
     tools:context=".HomeActivity">
 
 
     <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager_head"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/view_pager_head"
         android:layout_alignParentStart="true" />
 
     <RelativeLayout
+        android:id="@+id/Rlay"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/Rlay">
+        android:layout_height="match_parent">
 
         <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
             android:layout_width="100dp"
             android:layout_height="13dp"
-            android:id="@+id/tab_layout"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="270dp"
-            app:tabTextColor="@color/black"
-            app:tabIndicatorHeight="13dp"
             android:backgroundTint="#00ffffff"
-            app:tabMaxWidth="13dp"
             app:tabIndicator="@drawable/ic_dot"
-            app:tabIndicatorColor="@color/white"/>
+            app:tabIndicatorColor="@color/white"
+            app:tabIndicatorHeight="13dp"
+            app:tabMaxWidth="13dp"
+            app:tabTextColor="@color/black" />
 
         <LinearLayout
+            android:id="@+id/dots"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/dots"
             android:layout_centerHorizontal="true"
-            android:orientation="horizontal"
-            android:layout_marginTop="270dp">
+            android:layout_marginTop="270dp"
+            android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="12dp"
-                android:layout_height="12dp"
                 android:id="@+id/off_img_1"
-                android:paddingRight="1dp"
-                android:src="@drawable/ic_dot_of"/>
-            <ImageView
                 android:layout_width="12dp"
                 android:layout_height="12dp"
+                android:paddingRight="1dp"
+                android:src="@drawable/ic_dot_of" />
+
+            <ImageView
                 android:id="@+id/off_img_0"
-                android:paddingRight="1dp"
-                android:src="@drawable/ic_dot_of"/>
-            <ImageView
                 android:layout_width="12dp"
                 android:layout_height="12dp"
+                android:paddingRight="1dp"
+                android:src="@drawable/ic_dot_of" />
+
+            <ImageView
                 android:id="@+id/off_img_2"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
                 android:paddingLeft="1dp"
-                android:src="@drawable/ic_dot_of"/>
+                android:src="@drawable/ic_dot_of" />
 
         </LinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/regWindow"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="19dp"
-        android:layout_marginRight="19dp"
-        android:background="@drawable/backgraund_fragment_timer"
-        android:padding="20dp"
-        android:visibility="gone"
-        android:id="@+id/regWindow">
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:background="@drawable/backgraund_window_shadow"
+        android:visibility="gone">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/regWindow_inner"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/helloTextLable"
             android:layout_centerHorizontal="true"
-            android:text="Hi, friend!"
-            android:textColor="@color/white"
-            android:layout_marginBottom="20dp"
-            android:textSize="25dp"
-            android:textStyle="bold"/>
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="19dp"
+            android:layout_marginRight="19dp"
+            android:background="@drawable/backgraund_fragment_timer"
+            android:padding="20dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/helloText"
-            android:layout_below="@+id/helloTextLable"
-            android:layout_centerHorizontal="true"
-            android:text="If you wont to use this app, you need to Sing in\nwith your Google account."
-            android:textColor="@color/white"
-            android:textSize="15dp"
-            android:textStyle="normal"/>
-        <TextView
-            android:id="@+id/politika"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/helloText"
-            android:layout_centerHorizontal="true"
-            android:text="Read Police"
-            android:layout_marginTop="20dp"
-            android:textColor="@color/blue"
-            android:textSize="15dp"
-            android:textStyle="normal" />
+            <TextView
+                android:id="@+id/helloTextLable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp"
+                android:text="Hi, friend!"
+                android:textColor="@color/white"
+                android:textSize="25dp"
+                android:textStyle="bold" />
 
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/sign_in_button"
-            android:layout_width="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/politika"
-            android:layout_marginTop="20dp"
-            android:layout_height="wrap_content" />
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/out_button"
-            android:layout_width="wrap_content"
-            android:layout_toRightOf="@+id/sign_in_button"
-            android:layout_marginLeft="30dp"
-            android:visibility="gone"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/helloText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/helloTextLable"
+                android:layout_centerHorizontal="true"
+                android:text="If you wont to use this app, you need to Sing in\nwith your Google account."
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:textStyle="normal" />
 
+            <TextView
+                android:id="@+id/politika"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/helloText"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:text="Read Police"
+                android:textColor="@color/blue"
+                android:textSize="15dp"
+                android:textStyle="normal" />
+
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/sign_in_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/politika"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp" />
+
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/out_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_toRightOf="@+id/sign_in_button"
+                android:visibility="gone" />
+
+        </RelativeLayout>
     </RelativeLayout>
+
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/backgraund_fragment_timer"
-        android:padding="10dp"
-        android:visibility="gone"
-        android:layout_margin="19dp"
-        android:id="@+id/settingsWindow">
+        android:id="@+id/settingsWindow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:background="@drawable/backgraund_window_shadow"
+        android:visibility="gone">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/setWork"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:backgroundTint="@color/white"
-            android:hint="Enter work name"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/setInformation"
-            android:layout_below="@+id/setWork"
-            android:textColor="@color/white"
-            android:layout_marginTop="10dp"
-            android:textColorHint="@color/white"
-            android:backgroundTint="@color/white"
-            android:hint="Enter hobbies"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/setWorkDay"
-            android:layout_below="@+id/setInformation"
-            android:textColor="@color/white"
-            android:layout_marginTop="10dp"
-            android:textColorHint="@color/white"
-            android:backgroundTint="@color/white"
-            android:hint="Number of working days in month"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/setWorkTime"
-            android:layout_below="@+id/setWorkDay"
-            android:textColor="@color/white"
-            android:layout_marginTop="10dp"
-            android:textColorHint="@color/white"
-            android:backgroundTint="@color/white"
-            android:hint="Number of working hour in days"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/setDohod"
-            android:layout_below="@+id/setWorkTime"
-            android:textColor="@color/white"
-            android:layout_marginTop="10dp"
-            android:textColorHint="@color/white"
-            android:backgroundTint="@color/white"
-            android:hint="Enter the month salary in dollars"/>
-        <TextView
+        <RelativeLayout
+            android:id="@+id/settingsWindow_inner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_save"
-            android:layout_below="@+id/setDohod"
-            android:text="SAVE"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:layout_marginTop="10dp"
             android:layout_centerHorizontal="true"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:paddingLeft="50dp"
-            android:paddingRight="50dp"
-            android:textColor="@color/blue"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/backgraund_btn_timer"/>
+            android:layout_centerVertical="true"
+            android:layout_margin="19dp"
+            android:background="@drawable/backgraund_fragment_timer"
+            android:padding="10dp"
+            android:visibility="visible">
 
+            <EditText
+                android:id="@+id/setWork"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:paddingLeft="15dp"
+                android:elevation="@dimen/cardview_default_elevation"
+                android:textColor="@color/black"
+                android:textColorHint="#A0A0A0"
+                android:backgroundTint="@color/white"
+                android:background="@drawable/backgraund_window"
+                android:hint="Enter work name"
+                />
 
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:id="@+id/helloText"-->
-<!--            android:layout_centerHorizontal="true"-->
-<!--            android:text="If you wont to use this app,\n-->
-<!--            you need to Sing in\nwith your Google account."-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textSize="15dp"-->
-<!--            android:textStyle="normal"/>-->
+            <EditText
+                android:id="@+id/setInformation"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:paddingLeft="15dp"
+                android:elevation="@dimen/cardview_default_elevation"
+                android:textColor="@color/black"
+                android:textColorHint="#A0A0A0"
+                android:backgroundTint="@color/white"
+                android:background="@drawable/backgraund_window"
+                android:layout_below="@+id/setWork"
+                android:layout_marginTop="10dp"
+                android:hint="Enter hobbies" />
 
+            <EditText
+                android:id="@+id/setWorkDay"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:paddingLeft="15dp"
+                android:elevation="@dimen/cardview_default_elevation"
+                android:textColor="@color/black"
+                android:textColorHint="#A0A0A0"
+                android:backgroundTint="@color/white"
+                android:background="@drawable/backgraund_window"
+                android:layout_below="@+id/setInformation"
+                android:layout_marginTop="10dp"
+                android:hint="Number of working days in month"/>
 
+            <EditText
+                android:id="@+id/setWorkTime"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:paddingLeft="15dp"
+                android:elevation="@dimen/cardview_default_elevation"
+                android:textColor="@color/black"
+                android:textColorHint="#A0A0A0"
+                android:backgroundTint="@color/white"
+                android:background="@drawable/backgraund_window"
+
+                android:layout_below="@+id/setWorkDay"
+                android:layout_marginTop="10dp"
+                android:hint="Number of working hour in days" />
+
+            <EditText
+                android:id="@+id/setDohod"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:paddingLeft="15dp"
+                android:elevation="@dimen/cardview_default_elevation"
+                android:textColor="@color/black"
+                android:textColorHint="#A0A0A0"
+                android:backgroundTint="@color/white"
+                android:background="@drawable/backgraund_window"
+                android:layout_below="@+id/setWorkTime"
+                android:layout_marginTop="10dp"
+                android:hint="Enter the month salary in dollars" />
+
+            <TextView
+                android:id="@+id/btn_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/setDohod"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/backgraund_btn_timer"
+                android:paddingLeft="50dp"
+                android:paddingTop="5dp"
+                android:paddingRight="50dp"
+                android:paddingBottom="5dp"
+                android:text="SAVE"
+                android:textColor="@color/blue"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
 
     </RelativeLayout>
-
-
-
-
-<!--    <androidx.viewpager.widget.ViewPager-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:id="@+id/view_pager_bottom"-->
-<!--        android:layout_below="@+id/tab_layout"/>-->
-
 
 </RelativeLayout>

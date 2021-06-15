@@ -1,7 +1,6 @@
 package com.freedev.hmiyh;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -19,18 +18,17 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.view.SurfaceView;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.freedev.hmiyh.datas.Graphix;
+import com.freedev.hmiyh.datas.User;
 import com.freedev.hmiyh.fragments.LeftFragment;
 import com.freedev.hmiyh.fragments.RightFragment;
 import com.freedev.hmiyh.fragments.CenterFragment;
@@ -42,18 +40,13 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -114,7 +107,11 @@ public class HomeActivity extends AppCompatActivity {
                 .requestEmail()
                 .build();
 
+
+
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+        ifRegUser();
 
         SignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,8 +126,6 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
-
-        ifRegUser(false);
 
         menu_dots = findViewById(R.id.Rlay);
         menu_dots = findViewById(R.id.Rlay);
@@ -166,7 +161,7 @@ public class HomeActivity extends AppCompatActivity {
         headRelLayHome.setClickable(false);
     }
 
-    public void ifRegUser( boolean activityName) {
+    public void ifRegUser() {
 //        FirebaseUser currentUser = mAuth.getCurrentUser();
 //        if (currentUser!=null){
 //            Toast toast = Toast.makeText(getApplicationContext(),
@@ -179,16 +174,24 @@ public class HomeActivity extends AppCompatActivity {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         if (currentUser != null) {
+
+            SharedPreferences mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+            String id = mSettings.getString(APP_PREFERENCES_NAME, "UNIK_ID");
+            Log.d("%%%%%%%%%%%%%",id);
+
+//            Toast toast = Toast.makeText(getApplicationContext(),
+//                    "NO NULL "+ id, Toast.LENGTH_LONG);
+//            toast.show();
             Toast toast = Toast.makeText(getApplicationContext(),
-                    "NO NULL", Toast.LENGTH_SHORT);
+                    "LOADING... ", Toast.LENGTH_LONG);
             toast.show();
         } else {
             regWindow.setVisibility(View.VISIBLE);
             headRelLayHome.setClickable(false);
         }
 
-//        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(HomeActivity.this);
-//        Log.d("Is Sing in ??????????", String.valueOf(account));
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(HomeActivity.this);
+        Log.d("Is Sing in ??????????", String.valueOf(account));
 //        if (account==null&&activityName){
 //            regWindow.setVisibility(View.VISIBLE);
 //            headRelLayHome.setClickable(false);
@@ -306,11 +309,25 @@ public class HomeActivity extends AppCompatActivity {
                     editor.apply();
 
 
-                    int days = Integer.parseInt(setWorkDay.getText().toString());
-                    int time = Integer.parseInt(setWorkTime.getText().toString());
-                    int zp = Integer.parseInt(setDohod.getText().toString());
+                    double days = Double.parseDouble(setWorkDay.getText().toString());
+                    double time = Double.parseDouble(setWorkTime.getText().toString());
+                    double zp = Double.parseDouble(setDohod.getText().toString());
 
-                    double hourCost = (double) (zp/(days*time));
+                    double hourCost = (zp/(days*time));
+
+                    ArrayList<String> list = new ArrayList<>();
+                    list.add("111111f");
+                    list.add("100000f");
+                    list.add("1880f");
+                    list.add("50000f");
+                    list.add("3240f");
+                    list.add("123440f");
+                    list.add("144444f");
+
+                    String[] graph1 = {"111111f", "100000f", "1880f", "50000f", "3240f", "123440f", "144444f", "100000f", "100f", "200000f", "345432f"};
+                    String[] graph2 = {"0f", "183000f", "188000f", "50000f", "324000f", "230000f", "188000f", "15000f", "126000f", "5000f", "33000f"};
+                    float[] graph22 = {0f, 100000f, 188f, 50f, 324f, 123440f, 144444f, 100000f, 100f, 500000f, 345432f};
+                    String[] legendArr = {"05/21", "05/22", "05/23", "05/24", "05/25", "05/26", "05/27", "05/28", "05/29", "05/30", "05/31"};
 
                     @SuppressLint("DefaultLocale") User user = new User(personId,
                             personGiveName,
@@ -318,8 +335,34 @@ public class HomeActivity extends AppCompatActivity {
                             String.valueOf(personPhoto),
                             setWork.getText().toString(),
                             setInformation.getText().toString(),
-                            String.format("%8.2f",hourCost));
-                    Database.setInfo("User",user);
+                            String.valueOf(hourCost));
+                    Database.setInfoUser("User",user);
+                    @SuppressLint("DefaultLocale") Graphix graphix = new Graphix(
+                            personId,
+                            "0",
+                            "0",
+                            "0",
+                            "goal $/month",
+                            "Tab to set",
+                            "0",
+                            "work intensity",
+                            list,
+                            list,
+                            list);
+                    Database.setInfoGraphix("Graphix",graphix);
+                    @SuppressLint("DefaultLocale") Graphix graphix2 = new Graphix(
+                            personId,
+                            "60",
+                            "25",
+                            "8",
+                            "Progress in day",
+                            "Tab to set",
+                            "0",
+                            "",
+                            list,
+                            list,
+                            list);
+                    Database.setInfoGraphix("Graphix",graphix2);
 //            myRef.push().setValue(user);
                 }
                 InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
@@ -422,4 +465,22 @@ public class HomeActivity extends AppCompatActivity {
             // TODO Auto-generated method stub
         }
     };
+
+    @Override
+    public void onBackPressed() {
+        FragmentManager fm = getSupportFragmentManager();
+        OnBackPressedListener backPressedListener = null;
+        for (Fragment fragment: fm.getFragments()) {
+            if (fragment instanceof  OnBackPressedListener) {
+                backPressedListener = (OnBackPressedListener) fragment;
+                break;
+            }
+        }
+
+        if (backPressedListener != null) {
+            backPressedListener.onBackPressed();
+        } else {
+            super.onBackPressed();
+        }
+    }
 }

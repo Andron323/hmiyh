@@ -8,8 +8,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/headBlock"
-        >
+        android:id="@+id/headBlock">
 <!--        android:background="@drawable/backgraund_fragment"-->
 
         <TextView
@@ -17,7 +16,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/trhi"
             android:layout_centerHorizontal="true"
-            android:text="Transactions historyTimer"
+            android:text="Transactions history"
             android:textSize="20sp"
             android:layout_marginBottom="19dp"
             android:textColor="@color/blue"/>
@@ -29,6 +28,89 @@
             android:dividerHeight="0dp"
             android:divider="@android:color/transparent"
             android:layout_below="@+id/trhi"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#95191919"
+        android:visibility="gone"
+        android:id="@+id/window">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_centerHorizontal="true"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/backgraund_fragment_timer"
+            android:id="@+id/splashWindow">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/payment"
+                android:paddingLeft="15dp"
+                android:elevation="@dimen/cardview_default_elevation"
+                android:textColor="@color/black"
+                android:textColorHint="#A0A0A0"
+                android:backgroundTint="@color/white"
+                android:background="@drawable/backgraund_window"
+                android:hint="Add Payment"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/date"
+                android:paddingLeft="15dp"
+                android:layout_below="@+id/payment"
+                android:layout_marginTop="15dp"
+                android:inputType="date"
+                android:elevation="@dimen/cardview_default_elevation"
+                android:textColor="@color/black"
+                android:textColorHint="#A0A0A0"
+                android:backgroundTint="@color/white"
+                android:background="@drawable/backgraund_window"
+                android:hint="Add Date (01.01.2001)"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/sum"
+                android:paddingLeft="15dp"
+                android:layout_below="@+id/date"
+                android:layout_marginTop="15dp"
+                android:elevation="@dimen/cardview_default_elevation"
+                android:textColor="@color/black"
+                android:textColorHint="#A0A0A0"
+                android:inputType="phone"
+                android:backgroundTint="@color/white"
+                android:background="@drawable/backgraund_window"
+                android:hint="Add sum in $"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_save"
+                android:text="SAVE"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:layout_below="@+id/sum"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:textColor="@color/blue"
+                android:background="@drawable/backgraund_btn_timer_down"/>
+
+        </RelativeLayout>
 
     </RelativeLayout>
 

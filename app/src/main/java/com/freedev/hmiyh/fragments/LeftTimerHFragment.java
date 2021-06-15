@@ -1,17 +1,20 @@
 package com.freedev.hmiyh.fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.freedev.hmiyh.HistoryTimer;
+import com.freedev.hmiyh.datas.HistoryTimer;
 import com.freedev.hmiyh.R;
 import com.freedev.hmiyh.adapters.HistoryAdapterBottom;
 import com.google.firebase.database.ChildEventListener;
@@ -41,6 +44,9 @@ public class LeftTimerHFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private static final String APP_PREFERENCES_NAME ="UNIK_ID" ;
+    private static final String APP_PREFERENCES = "setfile";
 
     public LeftTimerHFragment() {
         // Required empty public constructor
@@ -86,7 +92,10 @@ public class LeftTimerHFragment extends Fragment {
         ArrayList<HistoryTimer> arrayOfUsers2 = new ArrayList<HistoryTimer>();
         HistoryAdapterBottom adapter_bottom = new HistoryAdapterBottom(getContext(), arrayOfUsers2);
 
-        Query myQuery = myRef;
+        SharedPreferences mSettings = getContext().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+        String id = mSettings.getString(APP_PREFERENCES_NAME, "UNIK_ID");
+        Log.d("%%%%%%%%%%%%%",id);
+        Query myQuery = myRef.orderByChild("id").equalTo(id);
         myQuery.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -121,16 +130,6 @@ public class LeftTimerHFragment extends Fragment {
 
 //        adapter_bottom.add(new History("0ch 2m 12s", "0.18$", "5.09.2021"));
 //        adapter_bottom.add(new History("1ch 18m 55s", "12.54$", "4.09.2021"));
-//        adapter_bottom.add(new History("1ch 54m 3s", "12.54$", "28.08.2021"));
-//        adapter_bottom.add(new History("6ch 6m 0s", "12.54$", "28.08.2021"));
-//        adapter_bottom.add(new History("2ch 14m 58s", "12.54$", "27.08.2021"));
-//        adapter_bottom.add(new History("12ch 8m 5s", "12.54$", "26.08.2021"));
-//        adapter_bottom.add(new History("1ch 18m 33s", "12.54$", "26.08.2021"));
-//        adapter_bottom.add(new History("0ch 14m 29s", "12.54$", "25.08.2021"));
-//        adapter_bottom.add(new History("0ch 35m 0s", "12.54$", "25.08.2021"));
-//        adapter_bottom.add(new History("3ch 1m 5s", "12.54$", "24.07.2021"));
-//        adapter_bottom.add(new History("0ch 46m 2s", "12.54$", "23.07.2021"));
-//        adapter_bottom.add(new History("1ch 59m 34s", "12.54$", "2.06.2021"));
 
         lvb.setAdapter(adapter_bottom);
         // Inflate the layout for this fragment

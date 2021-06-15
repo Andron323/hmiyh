@@ -1,4 +1,4 @@
-package com.freedev.hmiyh;
+package com.freedev.hmiyh.datas;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 

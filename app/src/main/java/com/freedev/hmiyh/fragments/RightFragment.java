@@ -3,7 +3,6 @@ package com.freedev.hmiyh.fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -21,12 +21,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.freedev.hmiyh.HistoryTimer;
 import com.freedev.hmiyh.HomeActivity;
 import com.freedev.hmiyh.R;
-import com.freedev.hmiyh.User;
+import com.freedev.hmiyh.datas.User;
 import com.freedev.hmiyh.adapters.AdapterReitin;
-import com.google.android.gms.common.ConnectionResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -37,6 +35,7 @@ import com.google.firebase.database.Query;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -156,7 +155,7 @@ public class RightFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast toast = Toast.makeText(getContext(),
-                        "Кот ушел!", Toast.LENGTH_SHORT);
+                        "Log out!", Toast.LENGTH_SHORT);
                 toast.show();
 
 //                GoogleApiClient mGoogleApiClient = new GoogleApiClient.Builder(getContext())
@@ -166,6 +165,11 @@ public class RightFragment extends Fragment {
                 // Firebase sign out
 //                mAuth.signOut();
                 // Google sign out
+                SharedPreferences mSettings = getContext().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = mSettings.edit();
+                editor.clear();
+                editor.apply();
+
                 FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(getActivity(), HomeActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -174,21 +178,33 @@ public class RightFragment extends Fragment {
             }
         });
 
-        Spinner spinner = (Spinner) v.findViewById(R.id.spinner);
-        Spinner spinner2 = (Spinner) v.findViewById(R.id.spinner2);
+        Spinner spinner_left = (Spinner) v.findViewById(R.id.spinner);
+        Spinner spinner_Right = (Spinner) v.findViewById(R.id.spinner2);
         // Создаем адаптер ArrayAdapter с помощью массива строк и стандартной разметки элемета spinner
-        ArrayAdapter<String> adapter_spinet = new ArrayAdapter<String>(getContext(), R.layout.item_spinner, countries);
+        ArrayList<String> sellectArrayList = new ArrayList<>();
+        sellectArrayList.add("Global");
+        ArrayAdapter<String> adapter_spinet_left = new ArrayAdapter<String>(getContext(), R.layout.item_spinner,sellectArrayList);
+        ArrayAdapter<String> adapter_spinet_Right = new ArrayAdapter<String>(getContext(), R.layout.item_spinner, countriesRight);
         // Определяем разметку для использования при выборе элемента
 //        adapter_spinet.setDropDownViewResource(R.layout.item_spinner);
         // Применяем адаптер к элементу spinner
-        spinner.setAdapter(adapter_spinet);
-        spinner2.setAdapter(adapter_spinet);
+        spinner_left.setAdapter(adapter_spinet_left);
+        spinner_Right.setAdapter(adapter_spinet_Right);
+
+
 
         ListView lv = (ListView) v.findViewById(R.id.listReiting);
 
+        String sellektOfSort = "";//TODO
+        ArrayList<User> sellectArrayListSort = new ArrayList<>();
+//        Collections.sort(sellectArrayListSort);
+//        Collections.reverse(sellectArrayListSort);
+
+
         ArrayList<User> arrayOfHistories = new ArrayList<User>();
         // Create the adapter to convert the array to views
-        AdapterReitin adapter = new AdapterReitin(getContext(), arrayOfHistories);
+        AdapterReitin adapter = new AdapterReitin(getContext(), arrayOfHistories,sellektOfSort);
+
 
         Query myQueryR = myRef;
         myQueryR.addChildEventListener(new ChildEventListener() {
@@ -196,6 +212,60 @@ public class RightFragment extends Fragment {
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 try {
                     User user = snapshot.getValue(User.class);
+                    sellectArrayList.add(user.personWork);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+            }
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+            }
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
+        lv.setAdapter(adapter);
+
+        spinner_left.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                System.out.println(parent.getAdapter().getItem(position));
+
+
+                if (parent.getAdapter().getItem(position).toString().contains("Global")){
+                    Query myQueryR = myRef;
+                    sellcetQuery(myQueryR,adapter,sellectArrayListSort);
+                }
+                if (!parent.getAdapter().getItem(position).toString().contains("Global")){
+                    Query myQueryR = myRef.orderByChild("personWork").equalTo(parent.getAdapter().getItem(position).toString());
+                    sellcetQuery(myQueryR,adapter,sellectArrayListSort);
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        return v;
+    }
+
+    private void sellcetQuery(Query myQueryR, AdapterReitin adapter, ArrayList<User> sellectArrayListSort) {
+        adapter.clear();
+        myQueryR.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                try {
+                    User user = snapshot.getValue(User.class);
+//                    sellectArrayListSort.add(user);
                     adapter.add(user);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -214,22 +284,7 @@ public class RightFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
-//        adapter.add(new History("Worker543", "100.81$","Developer JAVA"));
-//        adapter.add(new History("Hana Marta", "80$","Developer PHP"));
-//        adapter.add(new History("Suchika", "79.75$","Frilanser"));
-//        adapter.add(new History("Strelock5", "78.09$","Driver"));
-//        adapter.add(new History("Andron323", "77.09$","Developer JAVA"));
-//        adapter.add(new History("Frilanser", "40$","Pfotograf"));
-//        adapter.add(new History("Sergio Asomer", "34$","Muvi maker"));
-//        adapter.add(new History("IT123", "22$","Fantaner"));
-//        adapter.add(new History("Mars", "16.9$","Makretolog"));
-//        adapter.add(new History("Moet", "10.09$","Reklamer"));
-//        adapter.add(new History("SpeedyWorker", "6$","Developer WWW"));
-//        adapter.add(new History("12343253317872454", "5.50$","Copirayter"));
-
-        lv.setAdapter(adapter);
-        return v;
     }
-
-    private String[] countries = { "Developer", "Empty", "Колумбия", "Чили", "Уругвай"};
+    private String[] countriesRight = { "Data of Adding"};
+//    private String[] countriesRight = { "Data of Adding","Top to Down", "Down to Top"};
 }

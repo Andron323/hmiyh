@@ -2,13 +2,14 @@ package com.freedev.hmiyh.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.freedev.hmiyh.HistoryTimer;
+import com.freedev.hmiyh.datas.HistoryTimer;
 import com.freedev.hmiyh.R;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class HistoryAdapterBottom extends ArrayAdapter<HistoryTimer> {
         super(context, 0, histories);
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "DefaultLocale"})
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
@@ -33,7 +34,7 @@ public class HistoryAdapterBottom extends ArrayAdapter<HistoryTimer> {
         TextView tvData = (TextView) convertView.findViewById(R.id.data_bottom);
         // Populate the data into the template view using the data object
         tvName.setText(historyTimer.name_time);
-        tvHome.setText(historyTimer.cost+" $");
+        tvHome.setText(String.format("%.2f",Double.parseDouble(historyTimer.cost))+" $");
         tvData.setText(historyTimer.data);
         // Return the completed view to render on screen
         return convertView;

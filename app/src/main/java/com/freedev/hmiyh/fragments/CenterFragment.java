@@ -1,7 +1,11 @@
 package com.freedev.hmiyh.fragments;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,14 +14,25 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.freedev.hmiyh.Graphix;
+import com.freedev.hmiyh.datas.Graphix;
 import com.freedev.hmiyh.R;
 import com.freedev.hmiyh.adapters.AdapterGraphix;
+import com.freedev.hmiyh.datas.User;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -37,6 +52,15 @@ public class CenterFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    private FirebaseDatabase database;
+    private DatabaseReference myRef,myRefGraphix;
+
+    private static final String APP_PREFERENCES_NAME ="UNIK_ID" ;
+    private static final String APP_PREFERENCES = "setfile";
+
+    private TextView headerText, endSpeed;
+    private CustomGauge customGauge;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -82,11 +106,59 @@ public class CenterFragment extends Fragment {
 //        onSwipeTouchListener = new OnSwipeTouchListener(getContext(), v.findViewById(R.id.relativeLayout));
 
 
+        headerText = v.findViewById(R.id.headerText);
+        endSpeed = v.findViewById(R.id.endSpeed);
 
-        CustomGauge customGauge = v.findViewById(R.id.headProgressBAQR);
-        customGauge.setEndValue(1000);
-        customGauge.setStartValue(0);
-        customGauge.setPointSize(77);
+
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("User");
+        myRefGraphix = database.getReference("Graphix");
+
+
+        SharedPreferences mSettings = getContext().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+        String id = mSettings.getString(APP_PREFERENCES_NAME, "UNIK_ID");
+        Log.d("%%%%%%%%%%%%%",id);
+        Query myQuery = myRef.orderByChild("personId").equalTo(id);
+        myQuery.addChildEventListener(new ChildEventListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                try {
+
+                    User user = snapshot.getValue(User.class);
+                    Log.d("COSTCOSTCOSTCOST",user.personHourCost);
+
+                    customGauge = v.findViewById(R.id.headProgressBAQR);
+
+//                    customGauge.setPointSize(135);
+                    customGauge.setPointSize((int) ((double)5*((double)270/(double)Integer.parseInt("10"))));
+                    Log.d("COSTCOSTCOSTCOST", String.valueOf((int) ((double)30*((double)270/(double)Integer.parseInt("10")))));
+                    headerText.setText(String.format("%.0f",Double.parseDouble(user.personHourCost))+"$");
+                    endSpeed.setText("10");
+
+                    customGauge.setEndValue(270);
+                    customGauge.setStartValue(0);
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+            }
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+            }
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
+
 
         ListView lv = (ListView) v.findViewById(R.id.list_graphix);
 
@@ -94,22 +166,70 @@ public class CenterFragment extends Fragment {
         // Create the adapter to convert the array to views
         AdapterGraphix adapter = new AdapterGraphix(getContext(), arrayOfGraphix);
 
-        adapter.add(new Graphix(
-                "goal $/month",
-                "35%",
-                35,
-                "work intensity",
-                graph1,
-                graph2,
-                legendArr));
-        adapter.add(new Graphix(
-                "Progress in day",
-                "12%",
-                12,
-                "",
-                graph1,
-                graph2,
-                legendArr));
+        Query myQueryGraphix = myRefGraphix.orderByChild("id").equalTo(id);
+
+        Log.d("************","*****************************************");
+        myQueryGraphix.addChildEventListener(new ChildEventListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                try {
+                    Graphix graphix = snapshot.getValue(Graphix.class);
+                    Log.d("GRAPHIXGRAPHIXGRAPHIX", String.valueOf(graphix.list));
+                    adapter.add(graphix);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                try {
+//                    Graphix graphix = snapshot.getValue(Graphix.class);
+//                    Log.d("GRAPHIXGRAPHIXGRAPHIX22", String.valueOf(graphix.list));
+//                    adapter.remove(graphix);//TODO
+//                    adapter.add(graphix);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+            }
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
+//        adapter.add(new Graphix(
+//                id,
+//                "60",
+//                "25",
+//                "8",
+//                "goal $/month",
+//                "35%",
+//                "35",
+//                "work intensity",
+//                graph1,
+//                graph2,
+//                legendArr));
+//        adapter.add(new Graphix(
+//                id,
+//                "60",
+//                "25",
+//                "8",
+//                "Progress in day",
+//                "12%",
+//                "12",
+//                "",
+//                null,
+//                null,
+//                null));
+
 //        adapter.add(new Graphix(
 //                "Test",
 //                "90",

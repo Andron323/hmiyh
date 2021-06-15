@@ -8,9 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.freedev.hmiyh.HistoryTimer;
 import com.freedev.hmiyh.R;
-import com.freedev.hmiyh.User;
+import com.freedev.hmiyh.datas.User;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -18,11 +17,11 @@ import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AdapterReitin extends ArrayAdapter<User> {
-    public AdapterReitin(Context context, ArrayList<User> reiting) {
+    public AdapterReitin(Context context, ArrayList<User> reiting, String sellektOfSort) {
         super(context, 0, reiting);
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "DefaultLocale"})
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
@@ -44,9 +43,13 @@ public class AdapterReitin extends ArrayAdapter<User> {
                 .error(R.drawable.avatar)
                 .into(img);
         tvNick.setText(user.personName);
-        tvMoney.setText(user.personHourCost+" $");
+        tvMoney.setText(String.format("%.1f",Double.parseDouble(user.personHourCost))+" $");
         tvData.setText(user.personWork);
         // Return the completed view to render on screen
         return convertView;
+    }
+
+    public void paramsOfSort() {
+
     }
 }
